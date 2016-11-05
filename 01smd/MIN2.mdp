@@ -1,0 +1,24 @@
+title            =  min2
+cpp              =  /lib/cpp
+define		 =  ;-DPOSRES 
+define		 =  ;-DPOSRESDNA 
+define		 =  ;-DFLEXIBLE	;include flexible water in stead of regid water
+
+integrator	 =  steep
+emtol		 =  10.0	;Stop minimization when the maximum force < 1.0 kJ/mol
+nsteps		 =  1000	;Maximum number of steps
+
+nstlist		 =  10		;Frequency to update the neighbor list
+ns_type		 =  grid	;Method to determine neighbor list
+
+nstenergy	 = 10		; Write energies to disk every nstenergy steps
+energygrps	 = System	; Which energy group(s) to write to disk
+
+; PME
+coulombtype 	 =  PME		; Particle-Mesh Ewald
+rvdw             =  1.4  	; Van der Waals cut-off
+rcoulomb	 =  1.4  	; electroxtatic cut-off
+rlist		 =  1.4	
+
+constraints      =  none
+pbc		 =  xyz		;Periodic Boundary Conditions(all direction)

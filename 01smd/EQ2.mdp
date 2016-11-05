@@ -1,0 +1,42 @@
+title               =  NPT_pr
+define              =  -DPOSRES
+
+integrator          =  md
+tinit               =  0.0
+dt                  =  0.002
+nsteps              =  100000 ;1000000 ;total 2000ps
+	
+nstxout             =  1000  ;0.2ps
+nstvout             =  0
+nstfout             =  0
+nstlist             =  10
+ns_type             =  grid
+pbc		    =  xyz
+
+; PME
+coulombtype         =  PME         ; Particle-Mesh Ewald
+rvdw                =  1.4         ; Van der Waals cut-off
+rcoulomb            =  1.4         ; electroxtatic cut-off
+rlist               =  1.4
+fourierspacing	    =  0.16
+
+; Temperature coupling
+Tcoupl              =  v-rescale
+tc-grps		    =  non-protein	protein		
+ref_t               =  300	300
+tau_t		    =  0.1	0.1
+
+;Pressure coupling
+Pcoupl		    =  Parrinello-Rahman
+Pcoupltype	    =  Isotropic
+ref_p		    =  1.0
+tau_p		    =  10.0
+refcoord_scaling    =  com
+compressibility     =  4.5e-5
+continuation	    =  yes
+
+; Generate velocites
+gen_vel             =  no
+
+constraints 	    =  all-bonds
+DispCorr	    =  EnerPres
